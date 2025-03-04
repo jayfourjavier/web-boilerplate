@@ -1,0 +1,10 @@
+{
+    "brand": "Water Refilling Station",
+    "menu": [
+      { "name": "Home", "href": "#home", "icon": "fas fa-home" },
+      { "name": "About", "href": "#about", "icon": "fas fa-info-circle" },
+      { "name": "Services", "href": "#services", "icon": "fas fa-briefcase" },
+      { "name": "Contact", "href": "#contact", "icon": "fas fa-envelope" }
+    ]
+  }
+  

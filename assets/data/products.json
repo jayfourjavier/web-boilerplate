@@ -1,0 +1,29 @@
+[
+    {
+        "image": "assets/images/products/delivery.webp",
+        "title": "Water Delivery Service",
+        "description": "Fast and reliable water delivery service straight to your doorstep.",
+        "price": 50,
+        "currency": "₱",
+        "unit": "per container",
+        "show_more": true
+    },
+    {
+        "image": "assets/images/products/refill.webp",
+        "title": "Water Refill Station",
+        "description": "High-quality purified and distilled water available for refill.",
+        "price": 25,
+        "currency": "₱",
+        "unit": "per gallon",
+        "show_more": true
+    },
+    {
+        "image": "assets/images/products/dispenser.webp",
+        "title": "Water Dispenser",
+        "description": "Durable and energy-efficient water dispensers for home and office use.",
+        "price": 1500,
+        "currency": "₱",
+        "unit": "",
+        "show_more": true
+    }
+]

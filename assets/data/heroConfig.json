@@ -1,0 +1,22 @@
+[
+    {
+        "image": "assets/images/hero/events.webp",
+        "clickable": true,
+        "href": "#"
+    },
+    {
+        "image": "assets/images/hero/delivery.webp",
+        "clickable": true,
+        "href": "#"
+    },
+    {
+        "image": "assets/images/hero/business.webp",
+        "clickable": true,
+        "href": "#"
+    },
+    {
+        "image": "assets/images/hero/reseller.webp",
+        "clickable": true,
+        "href": "#"
+    }
+]
