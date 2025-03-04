@@ -7,7 +7,7 @@ $currentUrl = basename($_SERVER['PHP_SELF']);
 ?>
 
 <!-- Sticky-top Navbar -->
-<nav class="navbar navbar-expand-lg sticky-top px-3" id="mainNavbar">
+<nav class="navbar navbar-expand-lg sticky-top px-3 bg-light" id="mainNavbar">
     <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
         <i class="fas fa-bars"></i>
     </button>
