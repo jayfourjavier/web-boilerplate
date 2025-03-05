@@ -3,6 +3,8 @@
 include "navbar.php"; 
 include "hero.php";
 include "products.php";
+include "map.php";
+include "space.php";
 ?>
 
 

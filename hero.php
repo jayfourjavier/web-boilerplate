@@ -1,9 +1,13 @@
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-    <?php
-    $jsonFile = 'assets/data/heroConfig.json';
-    $heroItems = json_decode(file_get_contents($jsonFile), true);
-    ?>
+<?php
+$jsonFile = 'assets/data/heroConfig.json';
+$heroItems = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
 
+if (!is_array($heroItems)) {
+    $heroItems = [];
+}
+?>
+
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
     <!-- Indicators -->
     <div class="carousel-indicators">
         <?php foreach ($heroItems as $index => $item) : ?>
@@ -17,8 +21,8 @@
     <div class="carousel-inner">
         <?php foreach ($heroItems as $index => $item) : ?>
             <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                <?php if ($item['clickable']) : ?>
-                    <a href="<?= htmlspecialchars($item['href']) ?>">
+                <?php if (!empty($item['link']) && $item['link'] !== "#") : ?>
+                    <a href="<?= htmlspecialchars($item['link']) ?>">
                         <img src="<?= htmlspecialchars($item['image']) ?>" class="d-block w-100" alt="Hero Image <?= $index + 1 ?>">
                     </a>
                 <?php else : ?>

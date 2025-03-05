@@ -1,4 +1,7 @@
 <?php
+
+include 'header.php'; // Include the admin header
+
 $basePath = '/boilerplate/';
 $productsFile = '../assets/data/products.json';
 $imageDir = '../assets/images/products/';
@@ -92,24 +95,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Products</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body class="bg-light">
-
 <div class="container mt-5">
     <h2 class="text-center mb-4">Manage Products</h2>
 
     <!-- Add/Edit Product Form -->
     <div class="card mb-4">
-        <div class="card-header bg-primary text-white">Add / Edit Product</div>
+        <div class="card-header bg-success text-white">Add / Edit Product</div>
         <div class="card-body">
             <form method="POST" enctype="multipart/form-data" id="productForm">
                 <input type="hidden" name="action" id="formAction" value="add">
@@ -143,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-success w-100" onclick="confirmSave()">
+                <button type="button" class="btn btn-primary w-100" onclick="confirmSave()">
                     <i class="bi bi-save"></i> Save Product
                 </button>
             </form>
@@ -152,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Product List -->
     <div class="card">
-        <div class="card-header bg-secondary text-white">Products List</div>
+        <div class="card-header bg-success text-white">Products List</div>
         <div class="card-body">
             <table class="table table-bordered">
                 <thead>
@@ -258,6 +249,5 @@ function confirmSave() {
 }
 </script>
 
+<?php include 'footer.php'; // Include the admin footer ?>
 
-</body>
-</html>
