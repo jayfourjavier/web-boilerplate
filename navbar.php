@@ -1,36 +1,36 @@
 <?php
-// Read JSON config
-$navConfig = json_decode(file_get_contents("assets/data/navConfig.json"), true);
-$brandName = $navConfig['brand'] ?? 'Default Brand';
+
+// Load navigation menu from JSON
+$navConfigPath = $baseFilePath . "assets/data/navconfig.json";
+$navConfig = file_exists($navConfigPath) ? json_decode(file_get_contents($navConfigPath), true) : [];
 $menuItems = $navConfig['menu'] ?? [];
-$currentUrl = basename($_SERVER['PHP_SELF']);
 ?>
 
 <!-- Sticky-top Navbar -->
-<nav class="navbar navbar-expand-lg sticky-top px-3 bg-light" id="mainNavbar">
-    <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
-        <i class="fas fa-bars"></i>
-    </button>
-    <a class="navbar-brand ms-2" href="#"><?php echo $brandName; ?></a>
-    <button class="btn btn-outline-dark ms-auto" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
-    </button>
+<nav class="navbar navbar-expand-lg sticky-top px-2 bg-light text-center" id="mainNavbar">
+    <div class="d-flex align-items-center w-100">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a class="navbar-brand ms-2" href="<?= $baseUrl ?>"><?= htmlspecialchars($businessName) ?></a>
+    </div>
 </nav>
 
 <!-- Offcanvas Sidebar -->
 <div class="offcanvas offcanvas-start" id="offcanvasNavbar">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    <div class="offcanvas-header bg-success">
+        <h5 class="offcanvas-title fs-4 fw-bold text-white">Menu</h5> <!-- Title made bold and larger -->
+        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close"></button> <!-- Dark close button -->
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body bg-light">
         <ul class="nav flex-column">
             <?php foreach ($menuItems as $item): 
-                $activeClass = ($currentUrl === basename($item['href'])) ? 'active' : '';
+                $fullPath = $baseUrl . ltrim($item['href'], "/");
             ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $activeClass; ?>" href="<?php echo $item['href']; ?>" onclick="closeOffcanvas()">
-                        <i class="<?php echo $item['icon']; ?>"></i> <?php echo $item['name']; ?>
+                    <a class="nav-link py-2 px-3 rounded-3 mb-2 shadow-sm bg-primary text-white" href="<?= $fullPath ?>" onclick="closeOffcanvas()"> <!-- Dark background and white text -->
+                        <i class="fa <?= htmlspecialchars($item['icon']) ?> me-2"></i> <!-- Font Awesome icon with margin-right -->
+                        <?= htmlspecialchars($item['name']) ?>
                     </a>
                 </li>
             <?php endforeach; ?>
@@ -39,29 +39,6 @@ $currentUrl = basename($_SERVER['PHP_SELF']);
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const body = document.body;
-
-    // Load saved theme
-    if (localStorage.getItem("darkMode") === "enabled") {
-        body.classList.add("dark-mode");
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-
-    darkModeToggle.addEventListener("click", function () {
-        body.classList.toggle("dark-mode");
-        if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("darkMode", "enabled");
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            localStorage.setItem("darkMode", "disabled");
-            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-    });
-});
-
 // Close Offcanvas on Menu Click
 function closeOffcanvas() {
     var offcanvas = document.getElementById('offcanvasNavbar');
@@ -69,3 +46,11 @@ function closeOffcanvas() {
     if (bsOffcanvas) bsOffcanvas.hide();
 }
 </script>
+
+<!-- Custom Styles -->
+<style>
+    .nav-link:hover {
+        background-color: #343a40; /* Darker background on hover */
+        color: #fff; /* Keep text white on hover */
+    }
+</style>

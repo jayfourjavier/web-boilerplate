@@ -1,5 +1,5 @@
 <?php
-$jsonFile = 'assets/data/heroConfig.json';
+$jsonFile = $baseFilePath . "assets/data/heroConfig.json"; // Use baseFilePath
 $heroItems = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
 
 if (!is_array($heroItems)) {
@@ -21,12 +21,17 @@ if (!is_array($heroItems)) {
     <div class="carousel-inner">
         <?php foreach ($heroItems as $index => $item) : ?>
             <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                <?php if (!empty($item['link']) && $item['link'] !== "#") : ?>
-                    <a href="<?= htmlspecialchars($item['link']) ?>">
-                        <img src="<?= htmlspecialchars($item['image']) ?>" class="d-block w-100" alt="Hero Image <?= $index + 1 ?>">
+                <?php 
+                    // Ensure absolute URL for images
+                    $imagePath = $baseUrl . ltrim($item['image'], '/');
+                    $link = !empty($item['link']) && $item['link'] !== "#" ? htmlspecialchars($item['link']) : "#";
+                ?>
+                <?php if ($link !== "#") : ?>
+                    <a href="<?= $link ?>">
+                        <img src="<?= htmlspecialchars($imagePath) ?>" class="d-block w-100" alt="Hero Image <?= $index + 1 ?>">
                     </a>
                 <?php else : ?>
-                    <img src="<?= htmlspecialchars($item['image']) ?>" class="d-block w-100" alt="Hero Image <?= $index + 1 ?>">
+                    <img src="<?= htmlspecialchars($imagePath) ?>" class="d-block w-100" alt="Hero Image <?= $index + 1 ?>">
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>

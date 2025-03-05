@@ -1,8 +1,16 @@
 <?php
-// Load products from JSON file
-$productsJson = file_get_contents('assets/data/products.json');
-$products = json_decode($productsJson, true);
+// Ensure the correct file path
+$productsJsonPath = $baseFilePath . "assets/data/products.json";
+
+// Check if file exists before reading
+if (file_exists($productsJsonPath)) {
+    $productsJson = file_get_contents($productsJsonPath);
+    $products = json_decode($productsJson, true);
+} else {
+    $products = []; // Fallback to empty array if file is missing
+}
 ?>
+
 
 <div class="container py-5">
     <div class="text-center">
@@ -17,7 +25,7 @@ $products = json_decode($productsJson, true);
         <?php foreach ($products as $product): ?>
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="<?= htmlspecialchars($product['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($product['title']) ?>">
+                <img src="<?= htmlspecialchars($baseUrl . ltrim($product['image'], '/')) ?>"class="card-img-top" alt="<?= htmlspecialchars($product['title']) ?>">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"><?= htmlspecialchars($product['title']) ?></h5>
                         <p class="card-text flex-grow-1"><?= htmlspecialchars($product['description']) ?></p>

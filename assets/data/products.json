@@ -1,6 +1,6 @@
 [
     {
-        "image": "/boilerplate/assets/images/products/refill.webp",
+        "image": "assets/images/products/refill.webp",
         "title": "Water Refill Station",
         "description": "High-quality purified and distilled water available for refill.",
         "price": 25,
@@ -14,7 +14,7 @@
         "price": 1500,
         "currency": "\u20b1",
         "unit": "per unit",
-        "image": "/boilerplate/assets/images/products/dispenser.webp",
+        "image": "assets/images/products/dispenser.webp",
         "filename": ""
     },
     {
@@ -23,7 +23,7 @@
         "price": 199,
         "currency": "\u20b1",
         "unit": "per trip",
-        "image": "/boilerplate/assets/images/products/delivery-67c6e3164314c.webp",
+        "image": "assets/images/products/delivery-67c6e3164314c.webp",
         "filename": "delivery-67c6e3164314c.webp"
     }
 ]
